@@ -22,9 +22,27 @@ def go_in():
     drive.FileDelete()
     return "hello"
 
+@app.route("/sleep")
+def sleep():
+    drive = DriveUpload("sleep.txt")
+    drive.FileUpload()
+    return "sleep"
+
+@app.route("/wakeup")
+def wakeup():
+    drive = DriveUpload("sleep.txt")
+    drive.FileDelete()
+    return "wake_up"
+
 @app.route("/get")
 def get_status():
     drive = DriveUpload("out.txt")
+    status = drive.CheckOut()
+    return str(status)
+
+@app.route("/sleep_check")
+def get_sleep_status():
+    drive = DriveUpload("sleep.txt")
     status = drive.CheckOut()
     return str(status)
 
